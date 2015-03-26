@@ -110,7 +110,7 @@ public class deleteUser extends javax.swing.JFrame {
             myStmt.executeUpdate(sql2);
             System.out.println("User and Events Deleted");
             this.setVisible(false);
-            new managersCalendar().setVisible(true);
+            //new managersCalendar().setVisible(true);
             
         } catch (SQLException ex) {
             Logger.getLogger(createEvent.class.getName()).log(Level.SEVERE, null, ex);

@@ -12,12 +12,8 @@ import javax.swing.JOptionPane;
  * @author Tutis
  */
 public class registerForm extends javax.swing.JFrame {
-    private static String firstName;
-    private static String secondName;
-    private static String userID;
-    private static String password;
-    private static String position;
-
+        private static String userFName;
+        private static String userSName;
     /**
      * Creates new form registerForm
      */
@@ -86,7 +82,7 @@ public class registerForm extends javax.swing.JFrame {
 
         jLabel8.setText("Store Position");
 
-        storePositionOption.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Customer Assistant", "HR", "Manager" }));
+        storePositionOption.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manager", "HR", "Security", "Floor Staff" }));
 
         jLabel9.setText("Please fill in all fields marked with the astrix.");
 
@@ -113,17 +109,17 @@ public class registerForm extends javax.swing.JFrame {
                             .addComponent(emailText)
                             .addComponent(passwordOne)
                             .addComponent(passwordTwo)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(storePositionOption, 0, 130, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel9)
-                        .addGap(8, 8, 8)))
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -151,18 +147,15 @@ public class registerForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(passwordTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(storePositionOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(storePositionOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jLabel1.setBackground(new java.awt.Color(204, 0, 0));
@@ -179,16 +172,15 @@ public class registerForm extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(110, 110, 110)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(116, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,8 +215,8 @@ public class registerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            String userFName = firstNameText.getText();
-            String userSName = secondNameText.getText();
+            userFName = firstNameText.getText();
+            userSName = secondNameText.getText();
             String userEmail = emailText.getText();
             String positionOption = storePositionOption.getSelectedItem().toString();
             String passOne = passwordOne.getText();
@@ -239,7 +231,7 @@ public class registerForm extends javax.swing.JFrame {
                 //Register Button Code
                 this.setVisible(false);
                 //Register jFrame
-                new loginScreen().setVisible(true);  
+                new RegistrationConfirmationForm().setVisible(true);  
                 
             } else {
                 JOptionPane.showMessageDialog(this,
@@ -267,7 +259,7 @@ public class registerForm extends javax.swing.JFrame {
     }
     
     private Boolean passwordValidation(String passwordOne, String passwordTwo) {
-         if (passwordOne != passwordTwo) {
+         if (!passwordOne.equals(passwordTwo)) {
             JOptionPane.showMessageDialog(this,
                     "The passwords do not match. Please try again.",
                     "Invalid Password",
@@ -284,22 +276,15 @@ public class registerForm extends javax.swing.JFrame {
         return true;
     }
     
+    public static String getRegisteredFName(){
+        return userFName;
+    }
+    public static String getRegisteredSName(){
+        return userSName;
+    }
+    
    
-    public static String firstName(){
-        return firstName;
-    }
-    public static String secondName(){
-        return secondName;
-    }
-    public static String userID(){
-        return userID;
-    }
-    public static String password(){
-        return password;
-    }
-    public static String position(){
-        return position;
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailText;
     private javax.swing.JTextField firstNameText;

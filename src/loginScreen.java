@@ -203,7 +203,7 @@ public class loginScreen extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         this.setVisible(false);
-        new eventForm().setVisible(true);
+        new registerForm().setVisible(true);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

@@ -1,5 +1,8 @@
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
  
@@ -14,6 +17,8 @@ import java.util.logging.Logger;
  * @author Tutis
  */
 public class createEvent extends javax.swing.JFrame {
+    databaseManager manager = new databaseManager();
+    ArrayList<String> Users = databaseManager.getUsers();
     
     
 
@@ -21,7 +26,11 @@ public class createEvent extends javax.swing.JFrame {
      * Creates new form createEvent
      */
     public createEvent() {
-        initComponents();
+        initComponents(); 
+        manager.getManagerDetails();
+            for(int i = 0; i < Users.size(); i++) {   
+                staffNames.addItem(Users.get(i));   
+            }
     }
 
     /**
@@ -41,7 +50,12 @@ public class createEvent extends javax.swing.JFrame {
         eventDateTextField = new javax.swing.JTextField();
         createEvent = new javax.swing.JButton();
         backToEventsSummary = new javax.swing.JButton();
+        staffNames = new javax.swing.JComboBox();
+        department = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +94,24 @@ public class createEvent extends javax.swing.JFrame {
             }
         });
 
+        staffNames.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "For All" }));
+        staffNames.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffNamesActionPerformed(evt);
+            }
+        });
+
+        department.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manager", "HR", "Security", "Floor Staff" }));
+        department.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departmentActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Department");
+
+        jLabel5.setText("Employee Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,17 +120,21 @@ public class createEvent extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createEvent)
-                    .addComponent(eventDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(114, Short.MAX_VALUE))
+                    .addComponent(eventDateTextField)
+                    .addComponent(eventNameTextField)
+                    .addComponent(staffNames, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(department, 0, 123, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backToEventsSummary)
-                .addGap(23, 23, 23))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,36 +148,49 @@ public class createEvent extends javax.swing.JFrame {
                     .addComponent(eventDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(department, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(staffNames, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(38, 38, 38)
                 .addComponent(createEvent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(backToEventsSummary)
-                .addContainerGap())
+                .addGap(74, 74, 74))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("H:\\supermarketApp\\src\\tesco.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tesco.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel3)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,13 +211,20 @@ public class createEvent extends javax.swing.JFrame {
     private void createEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEventActionPerformed
         String eventName = eventNameTextField.getText();
         String eventDate = eventDateTextField.getText();
-       //ystem.out.println(userID);
-        String sql = "INSERT INTO Event (EventName, EventDate)" + "VALUES ('"+eventName+"','"+eventDate+"')";
-        databaseManager manager = new databaseManager();
-        manager.runStringQuery(sql);
+        String eventID = staffNames.getSelectedItem().toString();
+        String eventDepartment = department.getSelectedItem().toString();       
         
-        
-       
+        if (eventID.equals("For All")) {
+            String sql = "INSERT INTO Event (EventID, EventName, EventDepartment, EventDate)" + "VALUES ('0','"+eventName+"','"+eventDepartment+"','"+eventDate+"')";
+            databaseManager manager = new databaseManager();
+            manager.runUpdateQuery(sql);
+        } else { 
+            eventID = eventID.substring(0,5);
+            String sql = "INSERT INTO Event (EventID, EventName, EventDepartment, EventDate)" + "VALUES ('"+eventID+"','"+eventName+"','"+eventDepartment+"','"+eventDate+"')";
+            databaseManager manager = new databaseManager();
+            manager.runUpdateQuery(sql);
+        }       
+      
     }//GEN-LAST:event_createEventActionPerformed
 
     private void eventDateTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventDateTextFieldActionPerformed
@@ -184,10 +240,56 @@ public class createEvent extends javax.swing.JFrame {
         
     }//GEN-LAST:event_backToEventsSummaryActionPerformed
 
+    private void staffNamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffNamesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_staffNamesActionPerformed
+
+    private void departmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentActionPerformed
+        String users = department.getSelectedItem().toString();        
+            
+        if (users.equals("HR")){
+            staffNames.removeAllItems();
+            staffNames.addItem("For All");   
+            manager.getHRDetails();
+            for(int i = 0; i < Users.size(); i++) {   
+                staffNames.addItem(Users.get(i));   
+            }            
+        }
+        
+        if (users.equals("Security")){
+            staffNames.removeAllItems();
+            staffNames.addItem("For All");   
+            manager.getSecurityDetails();
+            for(int i = 0; i < Users.size(); i++) {   
+                staffNames.addItem(Users.get(i));   
+            }            
+        }
+        
+        if (users.equals("Manager")){
+            staffNames.removeAllItems();
+            staffNames.addItem("For All");   
+            manager.getManagerDetails();
+            for(int i = 0; i < Users.size(); i++) {   
+                staffNames.addItem(Users.get(i));   
+            }            
+        }
+        
+        if (users.equals("Floor Staff")){
+            staffNames.removeAllItems();
+            staffNames.addItem("For All");   
+            manager.getFloorStaffDetails();
+            for(int i = 0; i < Users.size(); i++) {   
+                staffNames.addItem(Users.get(i));   
+            }            
+        }      
+            
+    }//GEN-LAST:event_departmentActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
         /*
          * Set the Nimbus look and feel
          */
@@ -221,19 +323,26 @@ public class createEvent extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new createEvent().setVisible(true);
+                new createEvent().setVisible(true);             
             }
-        });
+          
+        });        
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backToEventsSummary;
     private javax.swing.JButton createEvent;
+    private javax.swing.JComboBox department;
     private javax.swing.JTextField eventDateTextField;
     private javax.swing.JTextField eventNameTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox staffNames;
     // End of variables declaration//GEN-END:variables
 }
