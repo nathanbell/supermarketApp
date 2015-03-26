@@ -4,11 +4,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nathan/Desktop/SupermarketSchedule/src/databaseConnect.java</file>
-            <file>file:/C:/Users/Nathan/Desktop/SupermarketSchedule/src/RegistrationConfirmationForm.java</file>
-            <file>file:/C:/Users/Nathan/Desktop/SupermarketSchedule/src/loginScreen.java</file>
-            <file>file:/C:/Users/Nathan/Desktop/SupermarketSchedule/src/registerForm.java</file>
-            <file>file:/C:/Users/Nathan/Desktop/SupermarketSchedule/src/managersCalendar.java</file>
+            <file>file:/H:/supermarketApp/src/createEvent.java</file>
+            <file>file:/H:/supermarketApp/src/adminControls.java</file>
+            <file>file:/H:/supermarketApp/src/registerForm.java</file>
+            <file>file:/H:/supermarketApp/src/User.java</file>
+            <file>file:/H:/supermarketApp/src/databaseConnect.java</file>
+            <file>file:/H:/supermarketApp/src/loginScreen.java</file>
+            <file>file:/H:/supermarketApp/src/eventForm.java</file>
+            <file>file:/H:/supermarketApp/src/databaseManager.java</file>
+            <file>file:/H:/supermarketApp/src/deleteEvent.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,19 +1,12 @@
 
 import javax.swing.JOptionPane;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author Tutis
- */
 public class loginScreen extends javax.swing.JFrame {
     private static String usersName;
     private static String position;
     private static String userID;
+    
 
     /**
      * Creates new form loginScreen
@@ -185,7 +178,7 @@ public class loginScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         int id = Integer.parseInt(userId.getText());;
-        char[] password = userPassword.getPassword();
+        String password = userPassword.getText();
         
         databaseManager manager = new databaseManager(id, password);
         Boolean loginCorrect = manager.logIn();
@@ -198,10 +191,11 @@ public class loginScreen extends javax.swing.JFrame {
         } else {
             System.out.println("Successful LogIn");
             System.out.println(id);
-            //Register Button Code
-            this.setVisible(false);
-            //Register jFrame
-            new floorStaffCalendar().setVisible(true);
+            
+            eventForm eventForm = new eventForm();
+            //User user = new User();
+            this.setVisible(false); 
+            new eventForm().setVisible(true);
         }  
         
      
@@ -209,7 +203,7 @@ public class loginScreen extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         this.setVisible(false);
-        new registerForm().setVisible(true);
+        new eventForm().setVisible(true);
     }//GEN-LAST:event_registerButtonActionPerformed
 
     /**

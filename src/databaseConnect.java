@@ -17,7 +17,9 @@ public class databaseConnect {
     //**************************************************************************************************************
     
     Connection connection = null;
-    ResultSet queryRes = null;   //Variable to contain the query result
+    ResultSet queryRes = null;
+    int example = 0;
+//Variable to contain the query result
 
     public databaseConnect() {
         System.out.println("Database Starts Connection...");
@@ -57,14 +59,31 @@ public class databaseConnect {
         {
             stmt = connection.createStatement();
         } catch (SQLException e) {
-            System.out.println("ERROR: Failed to create Statement.");
+            System.out.println("ERROR:" + e);
         }
 
         try { //Try to run the query
             queryRes = stmt.executeQuery(aQuery);
             System.out.println("Query Successful");
         } catch (SQLException e) {
-            System.out.println("ERROR: Cannot execute query.");
+            System.out.println("ERROR: " + e);
+        }
+    }
+    
+    public void runStringQuery(String aQuery) {
+        Statement stmt = null;
+        try //Create a Statement for the SQL query
+        {
+            stmt = connection.createStatement();
+        } catch (SQLException e) {
+            System.out.println("ERROR:" + e);
+        }
+
+        try { //Try to run the query
+            example = stmt.executeUpdate(aQuery);
+            System.out.println("Query Successful");
+        } catch (SQLException e) {
+            System.out.println("ERROR: " + e);
         }
     }
 
@@ -74,7 +93,7 @@ public class databaseConnect {
         try { //Create a Statement for the SQL query
           stmt = connection.createStatement();
         } catch (SQLException e) {
-            System.out.println("ERROR: Failed to create Statement.");
+            System.out.println("ERROR:" + e);
             return false;
         }
 
@@ -82,7 +101,7 @@ public class databaseConnect {
             stmt.executeUpdate(aQuery);
             System.out.println("Insert Successful");
         } catch (SQLException e) {
-            System.out.println("ERROR: Cannot execute query.");
+            System.out.println("ERROR:" + e);
             return false;
         }
         return true;

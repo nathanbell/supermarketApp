@@ -227,8 +227,8 @@ public class registerForm extends javax.swing.JFrame {
             String userSName = secondNameText.getText();
             String userEmail = emailText.getText();
             String positionOption = storePositionOption.getSelectedItem().toString();
-            char[] passOne = passwordOne.getPassword();
-            char[] passTwo = passwordTwo.getPassword();
+            String passOne = passwordOne.getText();
+            String passTwo = passwordTwo.getText();
             
             databaseManager manager = new databaseManager(userFName, userSName,userEmail,passOne,positionOption);
             boolean passwordResultSuccess = passwordValidation(passOne, passTwo);
@@ -266,7 +266,7 @@ public class registerForm extends javax.swing.JFrame {
         });
     }
     
-    private Boolean passwordValidation(char[] passwordOne, char[] passwordTwo) {
+    private Boolean passwordValidation(String passwordOne, String passwordTwo) {
          if (passwordOne != passwordTwo) {
             JOptionPane.showMessageDialog(this,
                     "The passwords do not match. Please try again.",
@@ -274,7 +274,7 @@ public class registerForm extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return false;
          }
-            if ((passwordOne.length < 5) || (passwordOne.length == 0)) {
+            if ((passwordOne.length() < 5) || (passwordOne.length() == 0)) {
             JOptionPane.showMessageDialog(this,
                     "Password is too short. The password needs to be 5 or greater.",
                     "Invalid Password",
